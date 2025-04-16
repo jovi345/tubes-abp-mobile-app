@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/login_page.dart';
+import 'package:mobile/login.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Login Page',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: LoginPage(),
+      home: LoginScreen(),
     );
   }
 }
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _HomeScreenState createState() => _HomeScreenState();
 }
 
@@ -28,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
     HomePage(),
     RecommendPage(),
     ProfilePage(),
-    SettingsPage(), // Misal tab keempatnya Settings
+    SettingsPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -62,6 +67,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
 // Dummy pages
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Center(child: Text('Home Page'));
@@ -69,6 +76,8 @@ class HomePage extends StatelessWidget {
 }
 
 class RecommendPage extends StatelessWidget {
+  const RecommendPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Center(child: Text('Recommend Page'));
@@ -76,6 +85,8 @@ class RecommendPage extends StatelessWidget {
 }
 
 class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Center(child: Text('Profile Page'));
@@ -83,6 +94,8 @@ class ProfilePage extends StatelessWidget {
 }
 
 class SettingsPage extends StatelessWidget {
+  const SettingsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Center(child: Text('Settings Page'));
