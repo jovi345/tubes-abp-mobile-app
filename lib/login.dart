@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/clipper.dart';
 import 'package:mobile/clipper2.dart';
+import 'package:mobile/main.dart';
 import 'package:mobile/sign_up.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -11,7 +12,23 @@ class LoginScreen extends StatelessWidget {
     var emailController = TextEditingController();
     var passwordController = TextEditingController();
 
-    Widget _buildEmail() => Container(
+    void handleLogin() {
+      final email = emailController.text;
+      final password = passwordController.text;
+
+      if (email == 'user@example.com' && password == '12345') {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+        );
+      } else {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Email atau password salah')));
+      }
+    }
+
+    Widget buildEmail() => Container(
       height: 50,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -39,7 +56,7 @@ class LoginScreen extends StatelessWidget {
       ),
     );
 
-    Widget _buildPassword() => Container(
+    Widget buildPassword() => Container(
       height: 50,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -119,9 +136,9 @@ class LoginScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       const SizedBox(height: 25),
-                      _buildEmail(),
+                      buildEmail(),
                       const SizedBox(height: 20),
-                      _buildPassword(),
+                      buildPassword(),
                       const SizedBox(height: 20),
                       const Text(
                         'Forgot Password?',
@@ -132,35 +149,38 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 20),
-                      Container(
-                        height: 50,
-                        width: 150,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          gradient: const LinearGradient(
-                            colors: [
-                              Color.fromARGB(255, 0, 240, 160),
-                              Color.fromARGB(160, 0, 240, 160),
+                      GestureDetector(
+                        onTap: handleLogin,
+                        child: Container(
+                          height: 50,
+                          width: 150,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            gradient: const LinearGradient(
+                              colors: [
+                                Color.fromARGB(255, 0, 240, 160),
+                                Color.fromARGB(160, 0, 240, 160),
+                              ],
+                            ),
+                          ),
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'LOGIN',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 17,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              SizedBox(width: 10),
+                              Icon(Icons.arrow_forward, color: Colors.white),
                             ],
                           ),
                         ),
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'LOGIN',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 17,
-                                color: Colors.white,
-                              ),
-                            ),
-                            SizedBox(width: 10),
-                            Icon(Icons.arrow_forward, color: Colors.white),
-                          ],
-                        ),
                       ),
-                      const SizedBox(height: 100), // reduced spacing
+                      const SizedBox(height: 100),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

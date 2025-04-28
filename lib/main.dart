@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/booking_page.dart';
+import 'package:mobile/favorite_page.dart';
+import 'package:mobile/home_page.dart';
 import 'package:mobile/login.dart';
+import 'package:mobile/profile_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -31,9 +35,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Widget> _pages = <Widget>[
     HomePage(),
-    RecommendPage(),
+    FavoritePage(),
+    BookingPage(),
     ProfilePage(),
-    SettingsPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -47,57 +51,29 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed, // penting untuk > 3 item
+        type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.star), label: 'Recommend'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
+            icon: Icon(Icons.home_outlined),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite_border_outlined),
+            label: 'Favorite',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.schedule_outlined),
+            label: 'Booking',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_outlined),
+            label: 'Profile',
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
+        selectedItemColor: const Color.fromARGB(255, 0, 240, 159),
         onTap: _onItemTapped,
       ),
     );
-  }
-}
-
-// Dummy pages
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('Home Page'));
-  }
-}
-
-class RecommendPage extends StatelessWidget {
-  const RecommendPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('Recommend Page'));
-  }
-}
-
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('Profile Page'));
-  }
-}
-
-class SettingsPage extends StatelessWidget {
-  const SettingsPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('Settings Page'));
   }
 }
